@@ -29,6 +29,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +49,62 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
+    private TextView tvData;
+    public class JasonTask extends AsyncTask<String,String,String>
+    {
+
+        @Override
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+                StringBuffer buffer = new StringBuffer();
+                String line = "";
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+                return buffer.toString();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }//end of finally
+
+            return null;
+        }//baclground ends
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            tvData.setText(result);
+        }//Post Execute ends
+
+    }//Jason task ends
+//--------------------------------------------------------------------------------------------------
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -99,8 +165,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         signIn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-
-
+                /*CALLING JASON FUNCTION TO PARSE*/
+                //new JasonTask().execute("http://www.jsoneditoronline.org/?id=8904cb1904b0467635a9cfd49331d455");
                 Intent intent = new Intent(LoginActivity.this, HomePage.class);
                 startActivity(intent);
 
