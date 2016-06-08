@@ -25,17 +25,17 @@ class Utility{
 		// Parse it to get the Boolean
 
 		Boolean bool = parseLoginResponse(response);
-
+		return bool;
 	}
 
 	
-	pulic static boolean parseLoginResponse(String response){
+	public static boolean parseLoginResponse(String response){
 		// Parse JSON here
 
 		return true;
 	}
 
-	public parseJsonAndPopulateListView(String response){
+	public static void parseJsonAndPopulateListView(String response){
 
 		// As the Name suggests. Though this function should be in Booking class i guess. Move it there. Call the getBookingDetails function from there and then call this there
 
