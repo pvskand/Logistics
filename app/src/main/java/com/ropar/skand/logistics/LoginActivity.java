@@ -168,8 +168,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onClick(View v) {
                 /*CALLING JASON FUNCTION TO PARSE*/
                 //new JasonTask().execute("http://www.jsoneditoronline.org/?id=8904cb1904b0467635a9cfd49331d455");
-                Intent intent = new Intent(LoginActivity.this, HomePage.class);
-                startActivity(intent);
+                if(mEmailView.getText().toString().equals("pvskand@gmail.com" )&& mPasswordView.getText().toString().equals("iitropar")) {
+                    Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                    startActivity(intent);
+                }
 
             }
 
