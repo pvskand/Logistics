@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
@@ -49,8 +50,8 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
-    private TextView tvData;
-    public class JasonTask extends AsyncTask<String,String,String>
+    //private TextView tvData;
+   /* public class JasonTask extends AsyncTask<String,String,String>
     {
 
         @Override
@@ -103,7 +104,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             tvData.setText(result);
         }//Post Execute ends
 
-    }//Jason task ends
+    }//Jason task ends*/
 //--------------------------------------------------------------------------------------------------
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -269,6 +270,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+            //mAuthTask.execute("Here goes the URL"); /* call to UserLoginTask */
         }
     }
     private boolean isEmailValid(String email) {
@@ -375,6 +377,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
+
+    //public class UserLoginTask extends AsyncTask<String,Void,Boolean> /* for jason call */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;
@@ -385,27 +389,42 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mPassword = password;
         }
 
+
+
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
+
+
             try {
-                // Simulate network access.
+
+
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;
             }
+            /*   Hard coded for a particular username access*/
 
-            for (String credential : DUMMY_CREDENTIALS) {
+            Utility util = new Utility();
+            boolean res = false;
+            try {
+                res = util.checkLoginCredentials(mEmail, mPassword);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return (res);
+            /*for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
-            }
+            }*/
 
             // TODO: register the new account here.
-            return true;
+           //return true;
         }
 
         @Override
