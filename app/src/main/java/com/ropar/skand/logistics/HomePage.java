@@ -1,5 +1,6 @@
 package com.ropar.skand.logistics;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,7 +33,7 @@ import java.util.List;
 
 
 
-public class HomePage extends AppCompatActivity
+public class HomePage extends Activity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -38,7 +41,16 @@ public class HomePage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
+
+        // List view
+        String[] color = {" Booking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016\n"," Booking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016"};
+        ArrayAdapter adapter = new ArrayAdapter <String>(this, android.R.layout.simple_list_item_1, color);
+        ListView listView = (ListView)findViewById(R.id.list);
+        listView.setAdapter(adapter);
+        // List view end
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +61,7 @@ public class HomePage extends AppCompatActivity
             }
         });
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -108,8 +120,7 @@ public class HomePage extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.bookings) {
 
-            Intent intent = new Intent(HomePage.this, booking.class);
-            startActivity(intent);
+
 
         } else if (id == R.id.profile) {
 
