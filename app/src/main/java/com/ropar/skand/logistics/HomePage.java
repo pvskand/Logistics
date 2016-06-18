@@ -24,6 +24,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -33,7 +34,7 @@ import java.util.List;
 
 
 
-public class HomePage extends Activity
+public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -41,13 +42,23 @@ public class HomePage extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         // List view
         String[] color = {" Booking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016\n"," Booking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016"};
         ArrayAdapter adapter = new ArrayAdapter <String>(this, android.R.layout.simple_list_item_1, color);
         ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Opening Booking Details", Toast.LENGTH_SHORT);
+                toast.show();
+                Intent i = new Intent(getApplicationContext(), listContent.class);
+                startActivity(i);
+
+            }
+        });
         // List view end
 
 
