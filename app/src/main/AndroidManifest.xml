@@ -26,11 +26,7 @@
             android:name=".HomePage"
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Booking"
-            android:label="@string/title_activity_booking"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".booking" />
+
         <activity
             android:name=".listContent"
             android:label="@string/title_activity_list_content"

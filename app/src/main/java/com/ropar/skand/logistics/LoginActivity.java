@@ -29,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.w3c.dom.Text;
@@ -171,6 +172,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 if(mEmailView.getText().toString().equals("pvskand@gmail.com" )&& mPasswordView.getText().toString().equals("iitropar")) {
                     Intent intent = new Intent(LoginActivity.this, HomePage.class);
                     startActivity(intent);
+                }
+                else{
+                    mEmailView.setText("");
+                    mPasswordView.setText("");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
 
             }
