@@ -43,13 +43,36 @@ public class HomePage extends AppCompatActivity
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // List view
-        String[] color = {" Booking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016\n"," Booking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016"};
-        ArrayAdapter adapter = new ArrayAdapter <String>(this, android.R.layout.simple_list_item_1, color);
-        ListView listView = (ListView)findViewById(R.id.list);
+        // Pending List view
+        String[] pending = {"\n Booking ID:    #1234567 \n" +
+                " Date:   15/02/2016\n" +
+                " Source: 12345\n" +
+                " Destination: 54321 \n" +
+                " Date of completion: 17/02/2016\n"};
+        ArrayAdapter adapter = new ArrayAdapter <String>(this, android.R.layout.simple_list_item_1, pending);
+        ListView listView = (ListView)findViewById(R.id.listPending);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Opening Navigation", Toast.LENGTH_SHORT);
+                toast.show();
+                Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        // History List view
+        String[] color = {" \n \nBooking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016\n"," Booking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016"," Booking ID:    #1234567 \n" +
+                " Date:   15/02/2016\n" +
+                " Source: 12345\n" +
+                " Destination: 54321 \n" +
+                " Date of completion: 17/02/2016\n"};
+        ArrayAdapter adapter1 = new ArrayAdapter <String>(this, android.R.layout.simple_list_item_1, color);
+        ListView listView1 = (ListView)findViewById(R.id.list);
+        listView1.setAdapter(adapter1);
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Opening Booking Details", Toast.LENGTH_SHORT);
@@ -59,7 +82,7 @@ public class HomePage extends AppCompatActivity
 
             }
         });
-        // List view end
+        // List view enew
 
 
 

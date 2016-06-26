@@ -23,7 +23,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
-    <ImageView
+    <!-- <ImageView
         android:id="@+id/test_image"
         android:src="@drawable/truck"
         android:alpha=".50"
@@ -32,7 +32,8 @@
 
         />
 
-    <TextView
+
+   <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BONUS"
@@ -42,14 +43,56 @@
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
         android:textColor="#000000"
-        />
-    <ListView
+        /> -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/test_image"
-        android:id="@+id/list"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+         >
 
-    <TextView android:id="@+id/texthere"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Pending"
+                    android:textSize="25dp"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    />
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:id="@+id/listPending"
+                    />
+
+                <TextView android:id="@+id/PendingText"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+
+                    />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="5dp"
+                    android:background="#c0c0c0"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Booking History"
+                    android:textSize="25dp"
+                    android:id="@+id/historyHeading"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    />
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/listPending"
+                    android:id="@+id/list"/>
+
+                <TextView android:id="@+id/texthere"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+    </LinearLayout>
 </RelativeLayout>
