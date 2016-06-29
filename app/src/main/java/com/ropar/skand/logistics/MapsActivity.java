@@ -117,6 +117,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     i.putExtra("destination", destination);
                     startActivity(i);
                 }
+                if(f1==3)
+                {
+                    Intent i = new Intent(getApplicationContext(),HomePage.class);
+                    startActivity(i);
+                }
+
             }
         });
     }

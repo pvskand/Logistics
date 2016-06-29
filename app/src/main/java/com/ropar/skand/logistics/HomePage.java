@@ -45,10 +45,15 @@ public class HomePage extends AppCompatActivity
         setSupportActionBar(toolbar);
         // Pending List view
         String[] pending = {"\n Booking ID:    #1234567 \n" +
+                "Company Name: Tata"+
                 " Date:   15/02/2016\n" +
                 " Source: 12345\n" +
                 " Destination: 54321 \n" +
-                " Date of completion: 17/02/2016\n"};
+                " Date of Booking: 17/02/2016\n"+
+                " Material Type: Goods\n"+
+                " Earning: Rs.260000"
+
+        };
         ArrayAdapter adapter = new ArrayAdapter <String>(this, android.R.layout.simple_list_item_1, pending);
         ListView listView = (ListView)findViewById(R.id.listPending);
         listView.setAdapter(adapter);
@@ -62,11 +67,28 @@ public class HomePage extends AppCompatActivity
         });
 
         // History List view
-        String[] color = {" \n \nBooking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016\n"," Booking ID:    #1234567 \n Date:   15/02/2016\n Source: 12345\n Destination: 54321 \n Date of completion: 17/02/2016"," Booking ID:    #1234567 \n" +
+        String[] color = {"\n Booking ID:    #1234567 \n" +
+                "Company Name: Tata"+
                 " Date:   15/02/2016\n" +
                 " Source: 12345\n" +
                 " Destination: 54321 \n" +
-                " Date of completion: 17/02/2016\n"};
+                " Date of Booking: 17/02/2016\n"+
+                " Material Type: Goods\n"+
+                " Earning: Rs.260000","\n Booking ID:    #1234567 \n" +
+                "Company Name: Tata"+
+                " Date:   15/02/2016\n" +
+                " Source: 12345\n" +
+                " Destination: 54321 \n" +
+                " Date of Booking: 17/02/2016\n"+
+                " Material Type: Goods\n"+
+                " Earning: Rs.260000","\n Booking ID:    #1234567 \n" +
+                "Company Name: Tata"+
+                " Date:   15/02/2016\n" +
+                " Source: 12345\n" +
+                " Destination: 54321 \n" +
+                " Date of Booking: 17/02/2016\n"+
+                " Material Type: Goods\n"+
+                " Earning: Rs.260000"};
         ArrayAdapter adapter1 = new ArrayAdapter <String>(this, android.R.layout.simple_list_item_1, color);
         ListView listView1 = (ListView)findViewById(R.id.list);
         listView1.setAdapter(adapter1);
@@ -75,7 +97,7 @@ public class HomePage extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Opening Booking Details", Toast.LENGTH_SHORT);
                 toast.show();
-                Intent i = new Intent(getApplicationContext(), listContent.class);
+                Intent i = new Intent(getApplicationContext(), bookingHistory.class);
                 startActivity(i);
 
             }

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.ropar.skand.logistics.bookingHistory"
+    tools:showIn="@layout/activity_booking_history">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Booking ID"
+        android:id="@+id/bookingID"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView5" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Company Name"
+        android:id="@+id/companyName"
+        android:layout_below="@+id/bookingID"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Source"
+        android:id="@+id/source"
+        android:layout_below="@+id/companyName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Destination"
+        android:id="@+id/destination"
+        android:layout_below="@+id/source"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Date of Booking"
+        android:id="@+id/dateOfBooking"
+        android:layout_below="@+id/destination"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Load Detail"
+        android:id="@+id/loadDetail"
+        android:layout_below="@+id/dateOfBooking"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Time Taken"
+        android:id="@+id/timeTaken"
+        android:layout_below="@+id/loadDetail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Rating"
+        android:id="@+id/rating"
+        android:layout_below="@+id/timeTaken"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Start Time"
+        android:id="@+id/startTime"
+        android:layout_below="@+id/rating"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Reach Source Time"
+        android:id="@+id/reachSourceTime"
+        android:layout_below="@+id/startTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Reach Destination Time"
+        android:id="@+id/reachDestinationTime"
+        android:layout_below="@+id/reachSourceTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Unload Time"
+        android:id="@+id/unloadTime"
+        android:layout_below="@+id/reachDestinationTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Earnings"
+        android:id="@+id/earnings"
+        android:layout_below="@+id/unloadTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="1234567"
+        android:id="@+id/bookingIDValue"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Tata"
+        android:id="@+id/CompanyNameValue"
+        android:layout_below="@+id/bookingIDValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Dwaraka, New Delhi"
+        android:id="@+id/SourceValue"
+        android:layout_below="@+id/CompanyNameValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Sector 43, Chandigarh"
+        android:id="@+id/destinationValue"
+        android:layout_below="@+id/SourceValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="16/05/2016"
+        android:id="@+id/dateOfBookingValue"
+        android:layout_below="@+id/destinationValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Goods"
+        android:id="@+id/loadDetailValue"
+        android:layout_below="@+id/dateOfBookingValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="4 h 14 min"
+        android:id="@+id/distanceValue"
+        android:layout_below="@+id/loadDetailValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="5.3"
+        android:id="@+id/timeCurrentLocationValue"
+        android:layout_below="@+id/distanceValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="10:00 AM"
+        android:id="@+id/startTimeValue"
+        android:layout_below="@+id/timeCurrentLocationValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="18:00 AM"
+        android:id="@+id/reachSourceTimeValue"
+        android:layout_below="@+id/startTimeValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="23:00 AM"
+        android:id="@+id/reachDestinationTimeValue"
+        android:layout_below="@+id/reachSourceTimeValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="23:30 AM"
+        android:id="@+id/unloadTimeValue"
+        android:layout_below="@+id/reachDestinationTimeValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="2600000"
+        android:id="@+id/earningsValue"
+        android:layout_below="@+id/unloadTimeValue"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp" />
+</RelativeLayout>

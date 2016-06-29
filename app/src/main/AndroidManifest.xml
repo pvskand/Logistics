@@ -55,6 +55,10 @@
         <activity
             android:name=".Pending"
             android:label="@string/title_activity_pending"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".bookingHistory"
+            android:label="@string/title_activity_booking_history"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
