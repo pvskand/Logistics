@@ -55,9 +55,7 @@ public class HomePage extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Opening Navigation", Toast.LENGTH_SHORT);
-                toast.show();
-                Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+                Intent i = new Intent(getApplicationContext(), Pending.class);
                 startActivity(i);
 
             }

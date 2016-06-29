@@ -2,9 +2,13 @@ package com.ropar.skand.logistics;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +45,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.w3c.dom.Text;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Marker> destinationMarkers = new ArrayList<>();
     private List<Polyline> polylinePaths = new ArrayList<>();
     private ProgressDialog progressDialog;
-
+    int f1 = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,10 +79,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         etOrigin = (EditText) findViewById(R.id.etOrigin);
         etDestination = (EditText) findViewById(R.id.etDestination);
 
+        final String source = getIntent().getStringExtra("source");
+        final String destination = getIntent().getStringExtra("destination");
+        int flag = getIntent().getIntExtra("flag",-1);
+        if(flag==2)
+        {
+            String source1 = getIntent().getStringExtra("source");
+            String destination1 = getIntent().getStringExtra("destination");
+            etDestination.setText(destination1);
+            etOrigin.setText(source1);
+
+            TextView button = (TextView)findViewById(R.id.reachedSource);
+            String reachedDestination = "Reached Destination";
+            button.setText(reachedDestination);
+            f1++;
+        }
+        else {
+            // Getting text from booking status
+
+            etDestination.setText(source); // setting the Destination
+        }
         btnFindPath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendRequest();
+            }
+        });
+        // on Clicking Reached Source Button
+        Button reached = (Button)findViewById(R.id.reachedSource);
+        reached.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(f1==2) {
+                    Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+                    i.putExtra("flag", 2);
+                    i.putExtra("source", source);
+                    i.putExtra("destination", destination);
+                    startActivity(i);
+                }
             }
         });
     }
