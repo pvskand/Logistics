@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -102,7 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btnFindPath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendRequest();
+                Demo();
             }
         });
         // on Clicking Reached Source Button
@@ -125,6 +127,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
+    }
+
+
+    private void Demo()
+    {
+        // Build the intent
+        Uri location = Uri.parse("geo:0,0?q=Dwarka,+New,+Delhi");
+        //Uri location = Uri.parse("geo:37.422219,-122.08364?z=14");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+
+// Verify it resolves
+        PackageManager packageManager = getPackageManager();
+        List<ResolveInfo> activities = packageManager.queryIntentActivities(mapIntent, 0);
+        boolean isIntentSafe = activities.size() > 0;
+
+// Start an activity if it's safe
+        if (isIntentSafe) {
+            startActivity(mapIntent);
+        }
     }
 
     private void sendRequest() {
@@ -169,7 +190,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    @Override
+
     public void onDirectionFinderStart() {
         progressDialog = ProgressDialog.show(this, "Please wait.",
                 "Finding direction..!", true);
@@ -193,7 +214,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    @Override
+
     public void onDirectionFinderSuccess(List<Route> routes) {
         progressDialog.dismiss();
         polylinePaths = new ArrayList<>();
