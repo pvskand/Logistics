@@ -133,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void Demo()
     {
         // Build the intent
-        Uri location = Uri.parse("geo:0,0?q=Dwarka,+New,+Delhi");
+        Uri location = Uri.parse("google.streetview:0,0?q=Dwarka,+New,+Delhi");
         //Uri location = Uri.parse("geo:37.422219,-122.08364?z=14");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
 
