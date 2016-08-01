@@ -61,6 +61,8 @@ LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
     String mobile=null;
     String password=null;
 
+
+
     //private TextView tvData;
     public class JasonTask extends AsyncTask<String,String,String>
     {

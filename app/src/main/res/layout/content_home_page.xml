@@ -21,6 +21,7 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
     <!-- <ImageView
@@ -44,55 +45,42 @@
         android:textSize="40dp"
         android:textColor="#000000"
         /> -->
-    <LinearLayout
+    <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-         >
+        android:layout_height="match_parent"
+        android:id="@android:id/tabhost">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Pending"
-                    android:textSize="25dp"
-                    android:textColor="#000000"
-                    android:textAlignment="center"
-                    />
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+            </TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:id="@+id/list"
+                    >
 
-                    android:id="@+id/listPending"
-                    />
 
-                <TextView android:id="@+id/PendingText"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                </ListView>
 
-                    />
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="5dp"
-                    android:background="#c0c0c0"/>
+            </FrameLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Booking History"
-                    android:textSize="25dp"
-                    android:id="@+id/historyHeading"
-                    android:textColor="#000000"
-                    android:textAlignment="center"
-                    />
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/listPending"
-                    android:id="@+id/list"/>
 
-                <TextView android:id="@+id/texthere"
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp" />
-    </LinearLayout>
+        </LinearLayout>
+
+    </TabHost>
 </RelativeLayout>

@@ -59,6 +59,18 @@
         <activity
             android:name=".bookingHistory"
             android:label="@string/title_activity_booking_history"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".tabbed"
+            android:label="@string/title_activity_tabbed"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Tab1Activity"
+            android:label="@string/title_activity_home_page"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Tab2Activity"
+            android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -102,7 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final String source = getIntent().getStringExtra("source");
         final String destination = getIntent().getStringExtra("destination");
         int flag = getIntent().getIntExtra("flag",-1);
-        if(flag==2)
+        if(flag==2) // goes when you reach the final destination
         {
             String source1 = getIntent().getStringExtra("source");
             String destination1 = getIntent().getStringExtra("destination");
