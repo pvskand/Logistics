@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,7 +33,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
@@ -49,10 +53,16 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class
+LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+
+    String details;
+    String mobile=null;
+    String password=null;
 
     //private TextView tvData;
-   /* public class JasonTask extends AsyncTask<String,String,String>
+    public class JasonTask extends AsyncTask<String,String,String>
     {
 
         @Override
@@ -61,11 +71,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             BufferedReader reader = null;
 
 
+
             try {
+
+
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
-                connection.connect();
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("password", password);
+                connection.setRequestProperty("mobile",mobile);
+                connection.setDoOutput(true);
+               // connection.connect();
 
+                //int responseCode=connection.getResponseCode();
 
                 InputStream stream = connection.getInputStream();
 
@@ -76,7 +94,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     buffer.append(line);
                 }
 
-                return buffer.toString();
+                details=buffer.toString();
+
+                return details;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -102,7 +122,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            tvData.setText(result);
+
         }//Post Execute ends
 
     }//Jason task ends*/
@@ -160,20 +180,36 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        //final JasonTask obje=new JasonTask();
+         mobile=mEmailView.getText().toString();
+         password=mPasswordView.getText().toString();
 
         Button signIn = (Button) findViewById(R.id.email_sign_in_button);
 
 
-        signIn.setOnClickListener(new View.OnClickListener() {
+                     signIn.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
-                /*CALLING JASON FUNCTION TO PARSE*/
-                //new JasonTask().execute("http://www.jsoneditoronline.org/?id=8904cb1904b0467635a9cfd49331d455");
-                if(mEmailView.getText().toString().equals("pvskand@gmail.com" )&& mPasswordView.getText().toString().equals("iitropar")) {
+
+               /* boolean LoginResult=checkLogin(mobile,password);
+                if(LoginResult==true)
+                {
                     Intent intent = new Intent(LoginActivity.this, HomePage.class);
                     startActivity(intent);
                 }
-                else{
+                else
+                {
+                    mEmailView.setText("");
+                    mPasswordView.setText("");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
+                    toast.show();
+                }*/
+
+                /*** this is of no use and should be deleted after the datbase is ready and above should be used******/
+                if (mEmailView.getText().toString().equals("pvskand@gmail.com") && mPasswordView.getText().toString().equals("iitropar")) {
+                    Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                    startActivity(intent);
+                } else {
                     mEmailView.setText("");
                     mPasswordView.setText("");
                     Toast toast = Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT);
@@ -192,6 +228,41 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         getLoaderManager().initLoader(0, null, this);
+    }
+
+    private boolean checkLogin(String mobile,String password)
+    {
+        JasonTask object1=new JasonTask();
+        object1.execute("www.rnalogistics.com/CheckLogin");
+        String response=JasonParser(details);
+
+        if(response=="success")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+    /*************parses the JSON to check the validation of the credentials *******/
+    private String JasonParser(String Jason_received)
+    {
+        String d=null;
+        try {
+
+            JSONObject obj=new JSONObject(Jason_received);
+            JSONArray arr=obj.getJSONArray("");
+            JSONObject status=arr.getJSONObject(0);
+             d =status.getString("status");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return (d);
+
     }
 
     private boolean mayRequestContacts() {
@@ -424,13 +495,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
 
             return (res);
-            /*for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }*/
+
 
             // TODO: register the new account here.
            //return true;
