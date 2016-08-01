@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,7 +18,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +55,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
@@ -67,6 +78,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Marker> destinationMarkers = new ArrayList<>();
     private List<Polyline> polylinePaths = new ArrayList<>();
     private ProgressDialog progressDialog;
+    String Booking_id=null;
+    String status=null;
+    String date_destination=null;
+    String details=null;
+    String date_completion=null;
+    String date=null;
+    
     int f1 = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,9 +136,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     i.putExtra("source", source);
                     i.putExtra("destination", destination);
                     startActivity(i);
+                    //request_reached_source();  /***** function call for http request ****/
                 }
                 if(f1==3)
                 {
+                    //request_reached_destination();  /***** function call for http request ****/
                     Intent i = new Intent(getApplicationContext(),HomePage.class);
                     startActivity(i);
                 }
@@ -128,6 +148,106 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+
+    private void request_reached_destination()
+    {
+        date=date_completion;
+        JasonTaskReachedDestination obj=new JasonTaskReachedDestination();
+        obj.execute("www.rnalogistics.com/completedJourney  ");
+        String response=Jsonparser(details);
+    }
+
+    private void request_reached_source()
+    {
+        date=date_destination;
+        JasonTaskReachedDestination obj=new JasonTaskReachedDestination();
+        obj.execute("www.rnalogistics.com/reachDestination ");
+        String response=Jsonparser(details);
+    }
+
+
+    public String Jsonparser(String Jsontobeparsed)
+    {
+        String d=null;
+        try {
+
+            JSONObject obj=new JSONObject(Jsontobeparsed);
+            JSONArray arr=obj.getJSONArray("");
+            JSONObject status=arr.getJSONObject(0);
+            d =status.getString("status");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return (d);
+
+    }
+
+    public class JasonTaskReachedDestination extends AsyncTask<String,String,String>
+    {
+
+        @Override
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+
+
+            try {
+
+
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty(" bookingId",Booking_id);
+                connection.setRequestProperty("status",status);
+                connection.setRequestProperty("dateOfStarting",date);
+                connection.setDoOutput(true);
+                // connection.connect();
+
+                //int responseCode=connection.getResponseCode();
+
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+                StringBuffer buffer = new StringBuffer();
+                String line = "";
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+                details=buffer.toString();
+
+                return details;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }//end of finally
+
+            return null;
+        }//baclground ends
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+        }//Post Execute ends
+
+    }//Jason task ends*/
 
 
     private void Demo()
